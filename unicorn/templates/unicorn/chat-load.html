@@ -1,6 +1,6 @@
 {%load utils%}
 {%load unicorn%}
-<div unicorn:poll-1000="get_msgs" class="flex flex-col h-full overflow-x-auto mb-4">
+<div unicorn:poll-4000="get_msgs" class="flex flex-col h-full overflow-x-auto mb-4 overflow-y-auto">
     {% for msg in msgs %}
     <div class="flex flex-col h-full">
         <div class="grid grid-cols-12 gap-y-2">
@@ -11,7 +11,7 @@
               <div
               class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
               >
-                <img src="{{msg.send_user_id.perfil_image.url}}" />
+                <img class="rounded-full" src="{{msg.send_user_id.perfil_image.url}}" />
               </div>
               {% else %}
               <div

@@ -26,7 +26,10 @@ class LoginView(UnicornView):
         if user.exists():
             self.error=''
             user = user.first()
-            self.capa = str(user.perfil_image.url if user.perfil_image.storage.exists(user.perfil_image.name) else '/static/default-user.jpg')
+            if user.perfil_image:
+                self.capa = str(user.perfil_image.url if user.perfil_image.storage.exists(user.perfil_image.name) else '/static/default-user.jpg')
+            else:
+                self.capa = '/static/default-user.jpg'
             self.name = user.name if user.name else user.username
             self.has_user = True
 
