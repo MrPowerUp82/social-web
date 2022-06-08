@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+{% load unicorn %}
+<div>
+    {% csrf_token %}
+    {% unicorn 'search' my_id=user.id %}
+</div>
+{% endblock %}

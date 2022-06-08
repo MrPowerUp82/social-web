@@ -13,4 +13,4 @@ class ChatLoadView(UnicornView):
 
     def get_msgs(self):
         self.msgs = Message.objects.filter(Q(recv_user_id=self.my_id)|Q(send_user_id=self.pk)|Q(recv_user_id__id=self.pk)|Q(send_user_id=self.my_id)).order_by('id')
-        return PollUpdate(timing=5000, disable=False, method="get_msgs")
+        return PollUpdate(timing=4000, disable=False, method="get_msgs")

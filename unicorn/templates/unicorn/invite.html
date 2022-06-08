@@ -1,0 +1,14 @@
+{%load utils%}
+<div class="flex flex-col items-center justify-center">
+    {% if user.perfil_image|file_exists %}
+    <img src="{{user.perfil_image.url}}" style="height: 200px; width:200px;" class="rounded-full"  />
+    {% else %}
+    <img src="/static/default-user.jpg" style="height: 200px; width:200px;" class="rounded-full"  />
+    {% endif %}
+    <h2 class="font-bold" >{{user.name}}</h2>
+    <p>{{user.description}}</p>
+    <div class="flex flex-row align-center justify-center">
+        <button unicorn:click="aceitar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">Aceitar</button>
+        <button unicorn:click="delete" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 rounded">Deletar</button>
+    </div>
+</div>
