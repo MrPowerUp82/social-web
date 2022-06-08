@@ -1,0 +1,80 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color:rgb(32,32,32);
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20vh;
+}
+
+.bloco{
+    padding: 32px;
+    border: 2px solid #00FFFF;
+    border-radius: 5px;
+    max-width: 700px;
+    max-height: 700px;
+}
+
+.row{
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.row input{
+    border: 1px solid #00FFFF;
+    background-color:rgb(32,32,32);
+    color:white;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+    margin-right: 3px;
+}
+
+.row button{
+    border: 2px solid #00FFFF;
+    background-color:rgb(32,32,32);
+    color:white;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.row button:active:hover {
+    opacity: 0.7;
+}
+
+.row span{
+    text-align: center;
+    border: 1px solid #00FFFF;
+    background-color:rgb(32,32,32);
+    color:white;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 300px;
+
+}
+
+.tasks{
+    margin-top:20px;
+    overflow:auto;
+    max-height:400px;
+    min-height: 32px;
+    padding: 2px;
+}

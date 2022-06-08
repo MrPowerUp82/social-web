@@ -1,0 +1,20 @@
+{%load unicorn%}
+<div class="container">
+    <div class="bloco">
+        <div class="row">
+            <input type="text" unicorn:model="task">
+            <button unicorn:click="add_task">ADD</button>
+        </div>
+        <div class="tasks">
+            {% for t in tasks %}
+            <div class="row">
+                <span>{{t}}</span>
+                <button value="{{t}}" unicorn:click="delete_task($event.target.value.trim())">DELETE</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br />
+    {% csrf_token %}
+    {%unicorn 'poll_update' parent=view%}
+</div>

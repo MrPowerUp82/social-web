@@ -1,0 +1,12 @@
+{% load unicorn %}
+{%load static%}
+<html>
+  <head>
+    {% unicorn_scripts %}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+  </head>
+  <body>
+    {% csrf_token %}
+    {% unicorn 'todo' %}
+  </body>
+</html>
