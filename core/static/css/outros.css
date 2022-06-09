@@ -1,0 +1,17 @@
+.error{
+    font-weight: bold;
+    color: red;
+}
+
+@keyframes anime{
+    from {
+      transform: rotate(0deg)
+    }
+    to {
+      transform: rotate(360deg)
+    }
+  }
+
+  .spinner{
+    animation: anime 2s linear infinite;
+  }

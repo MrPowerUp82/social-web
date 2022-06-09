@@ -15,12 +15,12 @@ class SearchView(UnicornView):
 
 
     def send(self,id):
-        check_invite = Invite.objects.filter(Q(recv_user_id__id=self.my_id)|Q(send_user_id__id=id)|Q(recv_user_id__id=id)|Q(send_user_id__id=self.my_id))
+        check_invite = Invite.objects.filter(Q(recv_user_id__id=self.my_id, send_user_id__id=id)|Q(recv_user_id__id=id, send_user_id__id=self.my_id))
         if check_invite.exists():
             self.error = 'Já existe uma solicitação pendente!'
             return
 
-        check_friend = Friend.objects.filter(Q(user1_id__id=self.my_id)|Q(user2_id__id=id)|Q(user1_id__id=id)|Q(user2_id__id=self.my_id))
+        check_friend = Friend.objects.filter(Q(user1_id__id=self.my_id, user2_id__id=id)|Q(user1_id__id=id, user2_id__id=self.my_id))
 
         if check_friend.exists():
             self.error = 'Vocês já são amigos!'

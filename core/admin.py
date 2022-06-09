@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario, Message, Friend, Invite
+from .models import Usuario, Message, Friend, Invite, Post
 
 
 @admin.register(Usuario)
@@ -16,4 +16,8 @@ class FriendAdmin(admin.ModelAdmin):
 
 @admin.register(Invite)
 class InviteAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
     list_display = ('id',)

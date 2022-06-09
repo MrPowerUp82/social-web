@@ -2,6 +2,44 @@
 {% block content %}
 {%load static%}
 {% load unicorn %}
-<div>
+{%load utils%}
+<div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4 overflow-y-auto">
+    <div class="container mx-auto px-4 py-8 max-w-xl">
+        <center>
+            <a href="{% url 'post'%}">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">Criar Post</button>
+            </a>
+        </center>
+        <br />
+        {% for post in posts %}
+        <div class="bg-white shadow-2xl rounded-lg mb-6 tracking-wide" >
+            {% if post.image|file_exists %}
+            <div class="md:flex-shrink-0">
+                <img src="{{post.image.url}}" alt="mountains" class="w-full h-64 rounded-lg rounded-b-none">
+            </div>
+            {% endif %}
+            <div class="px-4 py-2 mt-2">
+                <h2 class="font-bold text-2xl text-gray-800 tracking-normal"> {{post.title}}</h2>
+                    <p class="text-sm text-gray-700 px-2 mr-1">
+                        {{post.body}}
+                    </p>
+                <div class="author flex items-center -ml-3 my-3">
+                    {% if post.user_id.perfil_image|file_exists %}
+                    <div class="user-logo">
+                        <img class="w-12 h-12 object-cover rounded-full mx-4  shadow" src="{{post.user_id.perfil_image.url}}" alt="avatar">
+                    </div>
+                    {% else %}
+                    <div class="user-logo">
+                        <img class="w-12 h-12 object-cover rounded-full mx-4  shadow" src="{% static 'default-user.jpg' %}" alt="avatar">
+                    </div>
+                    {% endif %}
+                    <h2 class="text-sm tracking-tighter text-gray-900">
+                        <a href="{% url 'profile_user' pk=post.user_id.id %}">{{post.user_id.name}}</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

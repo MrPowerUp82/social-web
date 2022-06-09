@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+{% load unicorn %}
+{%load utils%}
+<div class="flex flex-col flex-auto items-center justify-center flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
+
+    {% csrf_token %}
+    {%unicorn 'profile' u=u%}
+
+</div>
+{% endblock %}

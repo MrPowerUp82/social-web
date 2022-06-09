@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
-    perfil_image = models.ImageField("Foto de Perfil!",blank=True, null=True)
+    perfil_image = models.ImageField("Foto de Perfil!",blank=True, null=True, upload_to="profiles/")
     name = models.CharField("Nome",max_length=255, blank=True, null=True)
     description = models.TextField("Sobre", blank=True, null=True)
 
@@ -22,3 +22,9 @@ class Message(models.Model):
     recv_user_id = models.ForeignKey('core.Usuario', related_name='recv_user_id_msg', on_delete=models.CASCADE)
     send_user_id = models.ForeignKey('core.Usuario', related_name="send_user_id_msg", on_delete=models.CASCADE)
     body = models.TextField('Message')
+
+class Post(models.Model):
+    user_id = models.ForeignKey('core.Usuario', related_name='user_id_post', on_delete=models.CASCADE)
+    image = models.ImageField("Image!",blank=True, null=True, upload_to="posts/")
+    title = models.CharField('Title', max_length=255)
+    body = models.TextField('Text')
