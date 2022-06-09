@@ -4,6 +4,7 @@
 {% load unicorn %}
   <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
     <div class="flex flex-col items-center justify-center">
+      <div class="container mx-auto px-4 py-8 max-w-xl">
         <form class="flex flex-col" method="post" action="{% url 'post' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <label class="font-bold" for="file_">Imagem</label>
@@ -17,6 +18,7 @@
             <br />
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">Postar</button>
         </form>
+    </div>
     </div>
   </div>
 {% endblock %}

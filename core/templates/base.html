@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="{%static 'css/output.css'%}">
     <link rel="stylesheet" href="{%static 'css/outros.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/b853a65915.js" crossorigin="anonymous"></script>
     <title>Chat Online</title>
 </head>
 <body>
     <!-- component -->
 <div class="flex h-screen antialiased text-gray-800">
     <div class="flex flex-row h-full w-full overflow-x-hidden">
-      <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
+      <div class="hidden flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0 md:flex" id="aside">
           <a href="{% url 'index'%}">
             <div class="flex flex-row items-center justify-center h-12 w-full">
               <div
@@ -171,8 +172,12 @@
         </div>
       </div>
       <div class="flex flex-col flex-auto h-full p-6">
+        <button class="button_menu" onclick="openAside()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         {%block content%} {%endblock%}
       </div>
+      <script src="{% static 'js/script.js' %}"></script>
     </div>
   </div>
 </body>
