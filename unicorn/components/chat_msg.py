@@ -9,8 +9,6 @@ class ChatMsgForm(forms.Form):
 
 class ChatMsgView(UnicornView):
 
-    my_id = ''
-
     text = ''
 
     pk = ''
@@ -22,9 +20,10 @@ class ChatMsgView(UnicornView):
 
 
     def send(self):
-        if self.is_valid():
+        if self.is_valid() and self.text != '':
             self.loading = True
-            send_user = Usuario.objects.filter(id=self.my_id).first()
+            my_id = self.request.user.id
+            send_user = Usuario.objects.filter(id=my_id).first()
             recv_user = Usuario.objects.filter(id=self.pk).first()
             msg = Message.objects.create(recv_user_id=recv_user, send_user_id=send_user, body=self.text)
             msg.save()

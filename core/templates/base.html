@@ -79,7 +79,7 @@
             <div
               class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
             >
-              <img class="rounded-full" src="{{a.user1_id.perfil_image.url}}" />
+              <img class="rounded-full h-8 w-8" src="{{a.user1_id.perfil_image.url}}" />
             </div>
             {% else %}
             <div
@@ -100,7 +100,7 @@
               <div
                 class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
               >
-                <img src="{{a.user2_id.perfil_image.url}}" />
+                <img class="rounded-full h-8 w-8" src="{{a.user2_id.perfil_image.url}}" />
               </div>
               {% else %}
               <div
@@ -116,7 +116,7 @@
             {% endfor %}
           </div>
           <div class="flex flex-row items-center justify-between text-xs mt-6">
-            <a href="{% url 'search' %}"><span class="font-bold">Solicitações</span>+</a>
+            <a href="{% url 'search' %}"><span class="font-bold">Solicitações</span><i class="fa-solid fa-magnifying-glass ml-2"></i></a>
             <span
               class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full"
               >{{invites|length}}</span
@@ -133,7 +133,7 @@
             <div
               class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
             >
-              <img class="rounded-full" src="{{a.recv_user_id.perfil_image.url}}" />
+              <img class="rounded-full h-8 w-8" src="{{a.recv_user_id.perfil_image.url}}" />
             </div>
             {% else %}
             <div
@@ -154,7 +154,7 @@
               <div
                 class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
               >
-                <img class="rounded-full" src="{{a.send_user_id.perfil_image.url}}" />
+                <img class="rounded-full h-8 w-8" src="{{a.send_user_id.perfil_image.url}}" />
               </div>
               {% else %}
               <div

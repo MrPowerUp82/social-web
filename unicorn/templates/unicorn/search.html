@@ -22,27 +22,33 @@
 
     <input unicorn:model="search" type="text" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Nome" />
     <div class="flex flex-col items-start justify-center max-h-96 overflow-y-auto mt-5">
-        {% for user in users %}
+        {% for user_ in users %}
             <div class="flex flex-row align-center justify-center">
-                {% if user.perfil_image|file_exists %}
+                {% if user_.perfil_image|file_exists %}
             <div
               class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
             >
-            <a href="{% url 'profile_user' pk=user.id %}">
-              <img class="rounded-full" src="{{user.perfil_image.url}}" />
+            <a href="{% url 'profile_user' pk=user_.id %}">
+              <img class="rounded-full h-8 w-8" src="{{user_.perfil_image.url}}" />
             </a>
             </div>
             {% else %}
-            <a href="{% url 'profile_user' pk=user.id %}">
+            <a href="{% url 'profile_user' pk=user_.id %}">
               <div
               class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
             >
-              {{user.name|perfil_letter}}
+              {{user_.name|perfil_letter}}
             </div>
             </a>
             {% endif %}
-                <span class="ml-2">{{user.name}}</span>
-                <button unicorn:click="send({{user.id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">Enviar</button>
+                <span class="ml-2">{{user_.name}}</span>
+                {% if user.id|check_friend:user_.id %}
+                <div class="ml-2 text-center text-gray-400 text-md font-semibold">
+                  <p>Vocês já são amigos!</p>
+                  </div>
+                {% else %}
+                <button unicorn:click="send({{user_.id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">Enviar</button>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

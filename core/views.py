@@ -87,10 +87,12 @@ def profile(request):
         user = request.user
         user.name = request.POST.get('name')
         user.description = request.POST.get('sobre')
-        user.perfil_image = request.FILES.get('file_')
+        if request.FILES:
+            user.perfil_image = request.FILES.get('file_')
         user.save()
-        if not user.perfil_image.height:
-            os.remove(user.perfil_image.path)
+        if user.perfil_image:
+            if not user.perfil_image.height:
+                os.remove(user.perfil_image.path)
             
     return render(request, 'profile.html',context)
 
@@ -118,11 +120,15 @@ def post(request):
     context['invites'] = invites
     if request.method == 'POST':
         user = request.user
-        post = Post.objects.create(title=request.POST.get('title'),body=request.POST.get('body'), user_id=user, image=request.FILES.get('file_'))
+        if request.FILES:
+            post = Post.objects.create(title=request.POST.get('title'),body=request.POST.get('body'), user_id=user, image=request.FILES.get('file_'))
+        else:
+            post = Post.objects.create(title=request.POST.get('title'),body=request.POST.get('body'), user_id=user)
         post.save()
-        if not post.image.height:
-            os.remove(post.image.path)
-            post.delete()
+        if post.image:
+            if not post.image.height:
+                os.remove(post.image.path)
+                post.delete()
 
         return redirect('index')
             

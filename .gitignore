@@ -4,3 +4,4 @@ venv-linux/
 .git.rar
 *.pyc
 media/
+web/settings.py

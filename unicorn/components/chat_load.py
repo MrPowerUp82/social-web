@@ -4,13 +4,17 @@ from django.db.models import Q
 
 class ChatLoadView(UnicornView):
     pk = ''
-    my_id = ''
     
     msgs = []
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
+
     def mount(self):
-        self.msgs = Message.objects.filter(Q(recv_user_id=self.my_id, send_user_id=self.pk)|Q(recv_user_id__id=self.pk, send_user_id=self.my_id)).order_by('id')
+        my_id = self.request.user.id
+        self.msgs = Message.objects.filter(Q(recv_user_id=my_id, send_user_id=self.pk)|Q(recv_user_id__id=self.pk, send_user_id=my_id)).order_by('id')
 
     def get_msgs(self):
-        self.msgs = Message.objects.filter(Q(recv_user_id=self.my_id, send_user_id=self.pk)|Q(recv_user_id__id=self.pk, send_user_id=self.my_id)).order_by('id')
+        my_id = self.request.user.id
+        self.msgs = Message.objects.filter(Q(recv_user_id=my_id, send_user_id=self.pk)|Q(recv_user_id__id=self.pk, send_user_id=my_id)).order_by('id')
         return PollUpdate(timing=4000, disable=False, method="get_msgs")
