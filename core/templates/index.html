@@ -22,6 +22,10 @@
             <div class="md:flex-shrink-0">
                 <img src="{{post.image.url}}" alt="mountains" class="w-full h-64 rounded-lg rounded-b-none">
             </div>
+            {% else %}
+            <div class="md:flex-shrink-0">
+                <img src="{% static 'no-image.png' %}" alt="mountains" class="w-full h-64 rounded-lg rounded-b-none">
+            </div>
             {% endif %}
             <div class="px-4 py-2 mt-2">
                 <h2 class="font-bold text-2xl text-gray-800 tracking-normal"> {{post.title}}</h2>
