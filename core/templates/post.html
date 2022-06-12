@@ -8,7 +8,7 @@
         <form class="flex flex-col" method="post" action="{% url 'post' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <label class="font-bold" for="file_">Imagem</label>
-            <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" name="file_" id="file_"/>
+            <input type="file" accept="image/png, image/gif, image/jpeg" name="file_" id="file_"/>
             <br />
             <input required placeholder="Titulo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" type="text" name="title" />
             <br />
