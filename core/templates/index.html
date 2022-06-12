@@ -6,9 +6,14 @@
 <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4 overflow-y-auto">
     <div class="container mx-auto px-4 py-8 max-w-xl">
         <center>
-            <a href="{% url 'post'%}">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded">Criar Post</button>
-            </a>
+                <a href="{% url 'post'%}">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Criar Post</button>
+                </a>
+                <br />
+                <br />
+                <a href="{% url 'score' %}">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Score / Jogar Game</button>
+                </a>
         </center>
         <br />
         {% for post in posts %}

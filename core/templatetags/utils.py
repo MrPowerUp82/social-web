@@ -17,4 +17,6 @@ def perfil_letter(name: str):
 
 @register.filter
 def check_friend(my_id, id):
+    if my_id == id:
+        return True
     return Friend.objects.filter(Q(user1_id__id=my_id, user2_id__id=id)|Q(user1_id__id=id, user2_id__id=my_id)).exists()

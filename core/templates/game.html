@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Jump</title>
+    <link rel="stylesheet" href="{% static 'css/game.css' %}" />
+</head>
+<body>
+    <div class="game-board">
+        <span class="score">0</span>
+        <img src="{% static 'images/clouds.png' %}" class="clouds" />
+        <img src="{% static 'images/mario.gif' %}" class="mario" />
+        <img src="{% static 'images/pipe.png' %}" class="pipe" />
+    </div>
+
+    <div class="button-container">
+        <h2>Best Score: 0</h2>
+        <h3>Score: 0</h3>
+        <button onclick="buttonClick()">Restart</button>
+        <select onchange="charChange(this.value)" name="char">
+            <option value="">Personagem</option>
+            <option value="1">Mario</option>
+            <option value="2">Sonic</option>
+        </select>
+        <br />
+        <br />
+        <a href="{% url 'index'%}">
+            <button>Home</button>
+        </a>
+    </div>
+
+    <!-- MrPowerUp -->
+    <script src="{% static 'js/game.js' %}" type="text/javascript"></script>
+</body>
+</html>

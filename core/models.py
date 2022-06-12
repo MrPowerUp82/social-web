@@ -6,6 +6,12 @@ class Usuario(AbstractUser):
     name = models.CharField("Nome",max_length=255, blank=True, null=True)
     description = models.TextField("Sobre", blank=True, null=True)
 
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return self.username
+
 
 class Friend(models.Model):
     user1_id = models.ForeignKey('core.Usuario', related_name='user1_id_fr', on_delete=models.CASCADE)
@@ -28,3 +34,8 @@ class Post(models.Model):
     image = models.ImageField("Image!",blank=True, null=True, upload_to="posts/")
     title = models.CharField('Title', max_length=255)
     body = models.TextField('Text')
+
+
+class Score(models.Model):
+    user_id = models.ForeignKey('core.Usuario', related_name='user_id_score', on_delete=models.CASCADE)
+    score = models.IntegerField('Score?')

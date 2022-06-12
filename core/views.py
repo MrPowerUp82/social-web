@@ -1,10 +1,14 @@
+import os
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as logout_
-from .models import Usuario, Message, Friend, Invite, Post
+from .models import Usuario, Message, Friend, Invite, Post, Score
 from django.db.models import Q
-import os
+from .serializers import ScoreSerializer
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 
 # Create your views here.
 
@@ -133,3 +137,43 @@ def post(request):
         return redirect('index')
             
     return render(request, 'post.html',context)
+
+
+@login_required(login_url='login')
+def game(request):
+    context = {}
+    return render(request, 'game.html',context)
+
+@login_required(login_url='login')
+def score(request):
+    context = {}
+    amigos = Friend.objects.filter(Q(user1_id=request.user)|Q(user2_id=request.user))
+    invites = Invite.objects.filter(Q(recv_user_id=request.user))
+    context['amigos'] = amigos
+    context['invites'] = invites
+    scores = Score.objects.all().order_by('-score')
+    context['scores'] = scores
+    return render(request, 'score.html',context)
+
+
+class ScoreView(APIView):
+    def get(self, request):
+        user = request.user
+        scores = Score.objects.filter(user_id=user)
+        serializer = ScoreSerializer(scores, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        data = dict(request.data)
+        user = request.user
+        score = Score.objects.filter(user_id=user)
+        if not score.exists():
+            try:
+                score = Score.objects.create(user_id=user, score=data['score'])
+                score.save()
+                return Response(data)
+            except Exception as e:
+                return Response({'error':str(e)})
+        score.score = data['score']
+        score.save()
+        return Response(score)

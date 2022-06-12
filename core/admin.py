@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario, Message, Friend, Invite, Post
+from .models import Usuario, Message, Friend, Invite, Post, Score
 
 
 @admin.register(Usuario)
@@ -21,3 +21,7 @@ class InviteAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id',)
+
+@admin.register(Score)
+class ScoreAdmin(admin.ModelAdmin):
+    list_display = ('id','user_id', 'score')
