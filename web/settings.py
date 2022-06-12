@@ -26,7 +26,7 @@ SECRET_KEY = 'sl8jrm!iywpp^_0e%!rweflwna!_3r*w31n!iu_5h6@)28pe98'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', '.herokuapp.com']
+ALLOWED_HOSTS = ['.vercel.app', '.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -84,14 +84,14 @@ WSGI_APPLICATION = 'web.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'chat_online',
-    #     'USER': 'root',
-    #     'PASSWORD': 'toor',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '3306',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'chat_online',
+        'USER': 'root',
+        'PASSWORD': 'toor',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
 }
 
 
