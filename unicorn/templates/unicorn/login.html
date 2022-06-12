@@ -104,18 +104,18 @@
         <button unicorn:click="login" class="bg-gray-600 text-white p-3 uppercase font-bold rounded-lg">
           Login
         </button>
-        <br />
-        <a href="{%url 'signup'%}">
-          <button class="bg-gray-600 text-white p-3 uppercase font-bold rounded-lg">
-            SignUp
-          </button>
-        </a>
       </center>
       {% else %}
       <center>
         <button unicorn:click="check_user" class="bg-gray-600 text-white p-3 uppercase font-bold rounded-lg">
           Next
         </button>
+        <br />
+        <a href="{%url 'signup'%}">
+          <button class="bg-gray-600 text-white p-3 uppercase font-bold rounded-lg">
+            SignUp
+          </button>
+        </a>
       </center>
       {% endif %}
       </div>
