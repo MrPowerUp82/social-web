@@ -164,7 +164,7 @@ class ScoreView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        data = dict(request.data)
+        data = request.data
         user = request.user
         score = Score.objects.filter(user_id=user)
         if not score.exists():
@@ -177,4 +177,4 @@ class ScoreView(APIView):
         score = score.first()
         score.score = data['score']
         score.save()
-        return Response(score)
+        return Response(data)
