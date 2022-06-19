@@ -174,6 +174,7 @@ class ScoreView(APIView):
                 return Response(data)
             except Exception as e:
                 return Response({'error':str(e)})
+        score = score.first()
         score.score = data['score']
         score.save()
         return Response(score)

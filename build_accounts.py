@@ -211,7 +211,7 @@ def tirar_acento(text):
 	return clean_text
 
 for i in data:
-	username = tirar_acento(i['name']).replace(' ','')
+	username = tirar_acento(i['name']).replace(' ','').lower()
 	name = i['name']
 	email = i['email']
 	pwd = '12345678'
