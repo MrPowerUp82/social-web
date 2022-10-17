@@ -10,8 +10,10 @@ class SearchView(UnicornView):
     error = ""
 
     def users(self):
-        if len(self.search) >= 3:
-            return [x for x in Usuario.objects.all().exclude(id=self.my_id) if self.search.lower() in x.name.lower() or self.search.lower() in x.username.lower()]
+        #if len(self.search) >= 3:
+        if len(self.search) >= 2:
+            #return [x for x in Usuario.objects.all().exclude(id=self.my_id) if self.search.lower() in x.name.lower() or self.search.lower() in x.username.lower()]
+            return Usuario.objects.all().exclude(id=self.my_id).filter(Q(username__icontains=self.search)|Q(name__icontains=self.search))
 
 
     def send(self,id):

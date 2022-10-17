@@ -94,9 +94,10 @@ def profile(request):
         if request.FILES:
             user.perfil_image = request.FILES.get('file_')
         user.save()
-        if user.perfil_image:
-            if not user.perfil_image.height:
-                os.remove(user.perfil_image.path)
+        if user.perfil_image.storage.exists(user.perfil_image.name):
+            if user.perfil_image:
+                if not user.perfil_image.height:
+                    os.remove(user.perfil_image.path)
             
     return render(request, 'profile.html',context)
 
